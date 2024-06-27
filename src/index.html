@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dictionary App</title>
+</head>
+<body>
+  <h1>Dictionary App</h1>
+  <input type="text" id="word" placeholder="Enter word">
+  <button onclick="getDefinition()">Get Definition</button>
+  <div id="definition"></div>
+
+  <script>
+    async function getDefinition() {
+      const word = document.getElementById('word').value;
+      const response = await fetch(`http://localhost:9000/define/${word}`);
+      const data = await response.json();
+      let result = data[0].meanings[0].definitions[0].definition
+      document.getElementById('definition').innerText = JSON.stringify(result, null, 2);
+    }
+  </script>
+</body>
+</html>

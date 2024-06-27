@@ -1,0 +1,36 @@
+{
+  "name": "huh-the-app",
+  "productName": "huh-the-app",
+  "version": "1.0.0",
+  "description": "Search for words by highlighting : )",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\""
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^7.4.0",
+    "@electron-forge/maker-deb": "^7.4.0",
+    "@electron-forge/maker-rpm": "^7.4.0",
+    "@electron-forge/maker-squirrel": "^7.4.0",
+    "@electron-forge/maker-zip": "^7.4.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.4.0",
+    "@electron-forge/plugin-fuses": "^7.4.0",
+    "@electron/fuses": "^1.8.0",
+    "electron": "31.0.2"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Gift-py",
+    "email": "giftabumere247@gmail.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "electron-squirrel-startup": "^1.0.1",
+    "express": "^4.19.2"
+  }
+}
