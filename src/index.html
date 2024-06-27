@@ -1,23 +1,28 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dictionary App</title>
+  <title>Highlight Text App</title>
 </head>
 <body>
-  <h1>Dictionary App</h1>
-  <input type="text" id="word" placeholder="Enter word">
-  <button onclick="getDefinition()">Get Definition</button>
-  <div id="definition"></div>
+  <h1>Highlight Text App</h1>
+  <button id="toggle-button">Activate</button>
 
   <script>
-    async function getDefinition() {
-      const word = document.getElementById('word').value;
-      const response = await fetch(`http://localhost:9000/define/${word}`);
-      const data = await response.json();
-      let result = data[0].meanings[0].definitions[0].definition
-      document.getElementById('definition').innerText = JSON.stringify(result, null, 2);
-    }
+    const { ipcRenderer } = require('electron');
+    const button = document.getElementById('toggle-button');
+
+    let isActive = false;
+
+    button.addEventListener('click', () => {
+      isActive = !isActive;
+      if (isActive) {
+        button.textContent = 'Deactivate';
+        ipcRenderer.send('toggle-highlight', 'on');
+      } else {
+        button.textContent = 'Activate';
+        ipcRenderer.send('toggle-highlight', 'off');
+      }
+    });
   </script>
 </body>
 </html>

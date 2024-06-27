@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <div class="container">
+        <span class="dot"></span>
+    </div>
+  <style>
+    @property --stop1color{
+        syntax: '<color>';
+        inherits: false;
+        initial-value: #011b26;
+      }
+      
+      @property --stop2color{
+        syntax: '<color>';
+        inherits: false;
+        initial-value: #011b26;
+      }
+      
+      @property --stop3color{
+        syntax: '<color>';
+        inherits: false;
+        initial-value: #011b26;
+      }
+      
+      @property --stop1{
+        syntax: '<percentage>';
+        inherits: false;
+        initial-value: 0%;
+      }
+      
+      @property --stop4{
+        syntax: '<percentage>';
+        inherits: false;
+        initial-value: 80%;
+      }
+      
+      .dot {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -6rem;
+        width: 12rem;
+        height: 12rem;
+        transition: --stop1 1s;
+        background:
+      /*     Radial-Gradient(transparent calc(70.71068% + -2*1px), transparent #000 70.71068%) */
+          radial-gradient(var(--stop1color) var(--stop1), var(--stop2color) 55%, var(--stop3color) 60%, #011b26 var(--stop4));
+        border-radius: 50%;
+        display: inline-block;
+        animation: anim 2s linear infinite alternate;
+      }
+      
+      .dot:before, .dot:after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -6rem;
+        width: 12rem;
+        height: 12rem;
+        border-radius: 50%;
+        content: "";
+      }
+      
+      .dot:before {
+        height: 6.75rem;
+        border-radius: 50%/ 59% 59% 41% 41%;
+        transform: scalex(0.83);
+        background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.1));
+      }
+      
+      .dot:after {
+        box-shadow: inset 0 -4rem 1px -3.5rem rgba(255, 255, 255, 0.25);
+      }
+      
+      @keyframes anim{
+        from {
+          --stop1color: #03638c;
+          --stop2color: #05d9f5;
+          --stop3color: #a6e5ed;
+          --stop4:100%;
+          --stop1:0%;
+        }
+      /*   50% {
+          --stop1:00%;
+        } */
+        to {
+          --stop1color: #011b26;
+          --stop2color: #03638c;
+          --stop3color: #05d9f5;
+          --stop1:55%;
+          --stop4:80%;
+        }
+      /*   to {
+          --stop1color: #011b26;
+          --stop2color: #011b26;
+          --stop3color: #011b26;
+          --stop1:55%;
+          --stop4:80%;
+        } */
+      }
+      
+      body {
+      /*   height: 100%;
+        width: 100%; */
+        background-color: #000;
+      }
+  </style>
+</head>
+<body>
+  <div class="animation"></div>
+</body>
+</html>
