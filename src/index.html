@@ -1,12 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Highlight Text App</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Huh? ... The App</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden; /* Prevent scroll bars from appearing */
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.96); /* Semi-transparent background */
+      backdrop-filter: blur(10px); /* Blur effect */
+    }
+
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: transparent; /* Ensure the background is transparent if you want a transparent window */
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(47, 47, 47, 0.96); /* Semi-transparent background */
+    }
+
+    .icon {
+      width: 16.3px;
+      height: 13.45px;
+      overflow: hidden;
+      margin-right: 5px;
+      filter: #8a2be2;
+    }
+  </style>
 </head>
 <body>
-  <h1>Highlight Text App</h1>
-  <button id="toggle-button">Activate</button>
-
+  <div class="container">
+    
+    <div class="header">
+      <img class="icon" src="./assets/search-solid.svg" alt="Search SVG">
+      <p style="color: white; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">huh? ... The App</p>
+    </div>
+    
+    <div class="button-div">
+      <button id="toggle-button">Activate</button>
+    </div>
+  
+  </div>
+  
   <script>
     const { ipcRenderer } = require('electron');
     const button = document.getElementById('toggle-button');

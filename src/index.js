@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, screen } = require('electron');
 const path = require('node:path');
 const { exec } = require('child_process');
 
@@ -25,12 +25,17 @@ function createMainWindow() {
 }
 
 function createPersistentWindow() {
+  const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+
   persistentWindow = new BrowserWindow({
-    width: 200,
-    height: 125,
+    width: 190,
+    height: 105,
+    x: width - 190, // Top right corner
+    y: 0, // Top right corner
     transparent: true,
     frame: false,
     alwaysOnTop: true,
+    roundedCorners: true,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
