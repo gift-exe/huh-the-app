@@ -11,10 +11,14 @@ let mainWindow;
 let persistentWindow;
 let highlight_checker_process;
 
+
 function createMainWindow() {
+  const { x, y, width, height } = screen.getPrimaryDisplay().workArea;
   mainWindow = new BrowserWindow({
-    width:800,
-    height:470,
+    width:500,
+    height:250,
+    x: x + (width - 500) / 2,
+    y: y + (height - 250) / 2,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
@@ -25,13 +29,14 @@ function createMainWindow() {
 }
 
 function createPersistentWindow() {
-  const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+
+  const { x, y, width, height } = screen.getPrimaryDisplay().workArea;
 
   persistentWindow = new BrowserWindow({
     width: 190,
     height: 105,
-    x: width - 190, // Top right corner
-    y: 0, // Top right corner
+    x: x + (width - 190), // Top right corner
+    y: y + 0, // Top right corner
     transparent: true,
     frame: false,
     alwaysOnTop: true,
@@ -41,7 +46,7 @@ function createPersistentWindow() {
       contextIsolation: false,
     },
   })
-
+  
   persistentWindow.loadFile(path.join(__dirname, 'windows', 'persistent.html'));
 }
 
@@ -81,6 +86,7 @@ ipcMain.on('toggle-highlight', (event, arg) => {
   if (arg == 'on') {
     createPersistentWindow()
     highlightChecker()
+    mainWindow.minimize()
   } else if (arg == 'off') {
     if (!persistentWindow.isDestroyed()) {
       persistentWindow.close();

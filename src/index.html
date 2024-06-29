@@ -14,7 +14,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: rgba(0, 0, 0, 0.96); /* Semi-transparent background */
+      background: rgba(10, 9, 12, 0.96); /* Semi-transparent background */
 
     }
 
@@ -26,11 +26,25 @@
       height: 100vh;
       background-color: transparent; /* Ensure the background is transparent if you want a transparent window */
     }
-
+    
     .header {
       position: fixed;
       top: 0;
       left: 0;
+      height: 15%;
+      width: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(47, 47, 47, 0.96); /* Semi-transparent background */
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      height: 10%;
       width: 100%;
       margin: 0;
       display: flex;
@@ -46,18 +60,26 @@
       margin-right: 5px;
     }
 
-    .p {
+    .p-1 {
       color: rgba(255, 255, 255, 0.742); 
-      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+      font-family:monospace
+    }
+
+    .p-2 {
+      color: rgba(255, 255, 255, 0.742); 
+      font-size: smaller;
+      font-family: monospace;
     }
 
     .button {
-      border-radius: 20px;
+      border-radius: 10px;
       background-color: #8a2be2;
+      margin-top: 10px;
       width: 120px;
-      height: 47px;
+      height: 30px;
       color: rgba(255, 255, 255, 0.742); 
-      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+      font-family:monospace;
+      font-size: small;
     }
   </style>
 </head>
@@ -66,11 +88,14 @@
     
     <div class="header">
       <img class="icon" src="./assets/search-solid.svg" alt="Search SVG">
-      <p class="p">huh? ... The App</p>
+      <p class="p-1">huh? ... The App</p>
     </div>
     
-    
     <button class="button" id="toggle-button">Activate</button>
+
+    <div class="footer">
+      <p class="p-2">Made With Love - By Gift</p>
+    </div>
     
   
   </div>
