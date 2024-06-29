@@ -14,7 +14,7 @@ let highlight_checker_process;
 function createMainWindow() {
   mainWindow = new BrowserWindow({
     width:800,
-    height:600,
+    height:470,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,

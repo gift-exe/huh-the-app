@@ -1,0 +1,5 @@
+- minimize mainWindow when app is started
+- make persistent window spawn on the first screen (in case of multiple screens)
+- make persistent window movable, with the mouse
+
+

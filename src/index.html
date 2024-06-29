@@ -15,7 +15,7 @@
       justify-content: center;
       align-items: center;
       background: rgba(0, 0, 0, 0.96); /* Semi-transparent background */
-      backdrop-filter: blur(10px); /* Blur effect */
+
     }
 
     body {
@@ -44,7 +44,20 @@
       height: 13.45px;
       overflow: hidden;
       margin-right: 5px;
-      filter: #8a2be2;
+    }
+
+    .p {
+      color: rgba(255, 255, 255, 0.742); 
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    }
+
+    .button {
+      border-radius: 20px;
+      background-color: #8a2be2;
+      width: 120px;
+      height: 47px;
+      color: rgba(255, 255, 255, 0.742); 
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
     }
   </style>
 </head>
@@ -53,12 +66,12 @@
     
     <div class="header">
       <img class="icon" src="./assets/search-solid.svg" alt="Search SVG">
-      <p style="color: white; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">huh? ... The App</p>
+      <p class="p">huh? ... The App</p>
     </div>
     
-    <div class="button-div">
-      <button id="toggle-button">Activate</button>
-    </div>
+    
+    <button class="button" id="toggle-button">Activate</button>
+    
   
   </div>
   
