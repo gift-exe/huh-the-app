@@ -208,15 +208,12 @@
         //Object.assign(img.style, imgStyle)
       });
 
-      
-      
-
       searchContainer.addEventListener('click', () => {
         const text = document.getElementById('text').innerText.split(':')[1];
         console.log(text)
         
         //api call
-        fetch(`http://localhost:9000/define/${text}`)
+        fetch(`http://localhost:8000/define/${text}`)
           .then(response => response.json())
           .then(data => {
             console.log(data)
