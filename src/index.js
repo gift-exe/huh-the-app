@@ -48,6 +48,10 @@ function createPersistentWindow() {
   })
   
   persistentWindow.loadFile(path.join(__dirname, 'windows', 'persistent.html'));
+
+  persistentWindow.webContents.on('did-finish-load', () => {
+    persistentWindow.webContents.openDevTools({ mode: 'detach' });
+  });
 }
 
 
@@ -59,9 +63,10 @@ function highlightChecker() {
 
   // monitor bash script outputs
   highlight_checker_process.stdout.on('data', (data) => {
-    const output = data.trim().split(' @huh@ ');
+    const output = data.trim().split('@huh@');
     console.log(output)
-    word = output[0]
+    text = output[0]
+    persistentWindow.webContents.send('highlighted-text', text);
   });
 
   highlight_checker_process.stderr.on('data', (data) => {
@@ -77,10 +82,10 @@ function highlightChecker() {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
-  
   createMainWindow()
 
 });
+
 
 ipcMain.on('toggle-highlight', (event, arg) => {
   if (arg == 'on') {
@@ -97,6 +102,11 @@ ipcMain.on('toggle-highlight', (event, arg) => {
   }
 });
 
+ipcMain.on('highlighted-text', (event, text) => {
+  if (persistentWindow) {
+    persistentWindow.webContents.send('highlighted-text', text);
+  }
+});
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits

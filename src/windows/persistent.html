@@ -19,36 +19,55 @@
             border-radius: 15px; /* Rounded corners */
 
         }
-        body {
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: transparent; /* Ensure the background is transparent if you want a transparent window */
-            border-radius: 15px; /* Optional: rounded corners */
-        }
 
-        .draggable {
-          -webkit-app-region: drag;
+        .container {
+          /**/
           width: 100%;
           height: 100%;
-        }
-
-        .content {
           position: absolute;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
           text-align: center;
-          background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+          background: rgba(0, 0, 0, 0.348); /* Semi-transparent background */
           padding: 20px;
           border-radius: 15px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
         }
 
-        .gif-container {
-            width: 190px; /* Adjust the size as needed */
-            height: 145px; /* Adjust the size as needed */
+        #text {
+          color: rgba(255, 255, 255, 0.742); 
+          font-family:monospace;
+          font-size: small;
+          align-content: center;
+          
+        }
+        #search-btn {
+          color: rgba(255, 255, 255, 0.742); 
+          font-family:monospace;
+          font-size: small;
+          cursor: pointer;
+        }
+
+        #search-btn:hover{
+          cursor: pointer;
+          color: rgba(0, 0, 0, 0.834); 
+        }
+        
+        #results {
+          overflow-y: auto;
+          color: rgba(255, 255, 255, 0.742); 
+          font-family:monospace;
+          font-size: small;
+        }
+
+        #gif-container {
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            -webkit-app-region: drag;
             background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
             border-radius: 15px; /* Optional: rounded corners */
             display: flex;
@@ -66,13 +85,152 @@
     </style>
 </head>
 <body>
-  <div class="draggable">
-    <div class="content">
-      <div class="gif-container">
-        <img src="../assets/bir.gif" alt="Persistent GIF">
-      </div>
+  
+  <div class="container">
+    <div id="text"></div>
+    <div id="search-btn"></div>
+    <div id="results"></div>
+    <div id="gif-container">
+      <img id="img" src="../assets/bir.gif" alt="Persistent GIF">
     </div>
   </div>
+
+
+  <script>
+    const { ipcRenderer } = require('electron');
+
+    const searchBtnStyle = {
+      borderRadius: '10px',
+      marginTop: '10px',
+      marginBottom: '10px',
+      width: '100%',
+      height: '30px',
+      alignContent: 'center',
+      color: 'rgba(255, 255, 255, 0.742)',
+      fontFamily: 'monospace',
+      fontSize: 'small',
+      margin: '0 auto',
+      cursor: 'pointer'
+    };
+
+    const textStyle = {
+      top: '0',
+      borderRadius: '10px',
+      marginTop: '10px',
+      marginBottom: '10px',
+      width: '100%',
+      alignContent: 'center',
+      alignSelf: 'center',
+      height: '30px',
+      color: 'rgba(255, 255, 255, 0.742)',
+      fontFamily: 'monospace',
+      fontSize: 'small',
+      
+    };
+
+    const gifContainerStyle = {
+      bottom: '0',
+      left: '0',
+      position:'relative',
+      width: '100%',
+      webkitAppRegion: 'drag',
+      background: 'rgba(0, 0, 0, 0.5)', /* Semi-transparent background */
+      borderRadius: '15px', /* Optional: rounded corners */
+      display: 'flex',
+      justifyContent: 'center',
+  }
+
+  const resultStyle = {
+    top: '0',
+    borderRadius: '10px',
+    marginTop: '10px',
+    marginBottom: '10px',
+    width: '100%',
+    alignContent: 'center',
+    alignSelf: 'center',
+    height: '30px',
+    color: 'rgba(255, 255, 255, 0.742)',
+    fontFamily: 'monospace',
+    fontSize: 'small',
+    
+  };
+
+    const imgStyle = {
+      transform: 'rotate(90deg)', 
+      width: '100%', 
+      height: '100%', 
+      borderRadius: '15px',
+      position: 'fixed',
+      top: '0',
+      left: '0',
+      display: 'hide'
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      textContainer = document.getElementById('text')
+      searchContainer = document.getElementById('search-btn')
+      gifContainer = document.getElementById('gif-container')
+      let inactivivtyTimeout
+
+      function resetInactivityTimer() {
+        clearTimeout(inactivivtyTimeout);
+        console.log('yyyyyyy')
+        inactivivtyTimeout = setTimeout(() => {
+          gifContainer.style.display = 'block';
+          textContainer.innerText = '';
+          searchContainer.innerText = '';
+          document.getElementById('results').innerText = '';
+        }, 5000); // Reset to standby after 5 seconds of inactivity
+      }
+
+      ipcRenderer.on('highlighted-text', (event, text) => {
+        
+        textContainer.innerText = `selected: ${text}`
+        Object.assign(textContainer.style, textStyle);
+
+        searchContainer.innerText = 'search'
+        searchContainer.onmouseover = () => {
+          searchContainer.style.backgroundColor = "rgba(0, 0, 0, 0.834)"
+        }
+        searchContainer.onmouseout = () => {
+          searchContainer.style.backgroundColor = "transparent"
+        }
+        Object.assign(searchContainer.style, searchBtnStyle);
+
+        Object.assign(gifContainer.style, gifContainerStyle);
+
+        gifContainer.style.display = 'none';
+
+        resetInactivityTimer();
+        
+        //img = document.getElementById('img')
+        //img.src = '../assets/standby.gif'
+        //Object.assign(img.style, imgStyle)
+      });
+
+      
+      
+
+      searchContainer.addEventListener('click', () => {
+        const text = document.getElementById('text').innerText.split(':')[1];
+        console.log(text)
+        
+        //api call
+        fetch(`http://localhost:9000/define/${text}`)
+          .then(response => response.json())
+          .then(data => {
+            console.log(data)
+            const resultContainer = document.getElementById('results');
+            Object.assign(resultContainer.style, resultStyle)
+            
+            res1 = data[0].meanings[0].definitions[0].definition
+            console.log(data)
+            resultContainer.innerText = res1
+          })
+      });
+    });
+
+  </script>
     
 </body>
 </html>
