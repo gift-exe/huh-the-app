@@ -1,6 +1,8 @@
 const { app, BrowserWindow, ipcMain, screen } = require('electron');
 const path = require('node:path');
 const { exec } = require('child_process');
+const terminate = require('terminate')
+
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -52,6 +54,12 @@ function createPersistentWindow() {
   persistentWindow.webContents.on('did-finish-load', () => {
     persistentWindow.webContents.openDevTools({ mode: 'detach' });
   });
+
+  ipcMain.on('reload-window', () => {
+    if (persistentWindow) {
+      persistentWindow.webContents.reload();
+    }
+  });
 }
 
 
@@ -93,12 +101,11 @@ ipcMain.on('toggle-highlight', (event, arg) => {
     highlightChecker()
     mainWindow.minimize()
   } else if (arg == 'off') {
+    terminate(highlight_checker_process.pid, err => console.log(err))
     if (!persistentWindow.isDestroyed()) {
       persistentWindow.close();
     }
-    if (highlight_checker_process) {
-      highlight_checker_process.kill();
-    }
+    
   }
 });
 

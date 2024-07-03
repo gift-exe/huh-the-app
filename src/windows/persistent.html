@@ -174,13 +174,13 @@
 
       function resetInactivityTimer() {
         clearTimeout(inactivivtyTimeout);
-        console.log('yyyyyyy')
         inactivivtyTimeout = setTimeout(() => {
           gifContainer.style.display = 'block';
           textContainer.innerText = '';
           searchContainer.innerText = '';
           document.getElementById('results').innerText = '';
-        }, 5000); // Reset to standby after 5 seconds of inactivity
+          ipcRenderer.send('reload-window');
+        }, 10000); // Reset to standby after 10 seconds of inactivity
       }
 
       ipcRenderer.on('highlighted-text', (event, text) => {
