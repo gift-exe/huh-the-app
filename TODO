@@ -3,4 +3,19 @@ BATCH A
 - make persistent window spawn on the first screen (in case of multiple screens)
 - make persistent window movable, with the mouse
 
+BATCH B
+- let search button disappear after click
+- let searched word div move up to create more space for result
+- increse result div container to be responsive to result length
+- customize scroll bar to blend with window
 
+BATCH B (Bug Fixes)
+- Let search button show up, anytime a new word is highlighted
+- Add cancel button in case of mistake highlight
+- Increate inactivity wait time
+- Modify inactive function to detect mouse over window as being active
+
+BATCH C
+- dont display if more than one word is highlighted
+- let refresh window be smoother
+- Optimize python server responsible for dictionary API query

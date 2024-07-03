@@ -1,7 +1,76 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scroll bars from appearing */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(10, 9, 12, 0.96); /* Semi-transparent background */
+
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
-    Arial, sans-serif;
-  margin: auto;
-  max-width: 38rem;
-  padding: 2rem;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: transparent; /* Ensure the background is transparent if you want a transparent window */
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 15%;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(47, 47, 47, 0.96); /* Semi-transparent background */
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 10%;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(47, 47, 47, 0.96); /* Semi-transparent background */
+}
+
+.icon {
+  width: 16.3px;
+  height: 13.45px;
+  overflow: hidden;
+  margin-right: 5px;
+}
+
+.p-1 {
+  color: rgba(255, 255, 255, 0.742); 
+  font-family:monospace
+}
+
+.p-2 {
+  color: rgba(255, 255, 255, 0.742); 
+  font-size: smaller;
+  font-family: monospace;
+}
+
+.button {
+  border-radius: 10px;
+  background-color: #8a2be2;
+  margin-top: 10px;
+  width: 120px;
+  height: 30px;
+  color: rgba(255, 255, 255, 0.742); 
+  font-family:monospace;
+  font-size: small;
 }
