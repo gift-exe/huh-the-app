@@ -21,5 +21,6 @@ BATCH D
 - edit gifs to remove that last frame with bg, to take care of glitching effect
 
 BATCH E
+- Error Handling 
 - let refresh window be smoother
 - Optimize python server responsible for dictionary API query
