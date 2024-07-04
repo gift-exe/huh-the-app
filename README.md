@@ -3,7 +3,7 @@ Do you consider the process of going online to search for it's meaning to be a p
 
 You're not alone lol : )  
 
-Well, you don't have to anymore, just highlight the word, and get it's meaning right on your screen : )  
+The good news is, you don't have to anymore, just highlight the word, and get it's meaning right on your screen : )  
 It works over all apps ... under normal circumstances atleast  
 
 
