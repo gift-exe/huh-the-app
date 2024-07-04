@@ -7,7 +7,7 @@ The good news is, you don't have to anymore, just highlight the word, and get it
 It works over all apps ... under normal circumstances atleast  
 
 
-This is a super simple app, it works, but it's like super basic, so if you'd love any new feature, just lmk, by creating an issue  
+This is a super simple app, it works, but it's like super basic, so if you'd love any new feature, just lmk, by creating a new issue  
 
 Have funnnnn : )
 
