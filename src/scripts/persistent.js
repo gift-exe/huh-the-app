@@ -1,5 +1,7 @@
 const { ipcRenderer } = require('electron');
 
+const URL = process.env.URL
+
 const searchBtnStyle = {
     borderRadius: '10px',
     marginTop: '10px',
@@ -124,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loaderContainer.style.display = 'block';
         
         //api call
-        fetch(`http://localhost:8000/define/${text}`)
+        fetch(`${URL}define/${text}`)
             .then(response => response.json())
             .then(data => {
             console.log(data)
