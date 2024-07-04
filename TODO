@@ -9,13 +9,17 @@ BATCH B
 - increse result div container to be responsive to result length
 - customize scroll bar to blend with window
 
-BATCH B (Bug Fixes)
+BATCH C
 - Let search button show up, anytime a new word is highlighted
 - Add cancel button in case of mistake highlight
 - Increate inactivity wait time
 - Modify inactive function to detect mouse over window as being active
 
-BATCH C
+BATCH D
+- add loader, after search button has been clicked
 - dont display if more than one word is highlighted
+- edit gifs to remove that last frame with bg, to take care of glitching effect
+
+BATCH E
 - let refresh window be smoother
 - Optimize python server responsible for dictionary API query

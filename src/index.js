@@ -13,6 +13,9 @@ let mainWindow;
 let persistentWindow;
 let highlight_checker_process;
 
+function hasWhiteSpace(s) {
+  return /\s/g.test(s);
+}
 
 function createMainWindow() {
   const { x, y, width, height } = screen.getPrimaryDisplay().workArea;
@@ -56,8 +59,9 @@ function createPersistentWindow() {
   });
 
   ipcMain.on('reload-window', () => {
+    //persistentWindow.setBounds({ width: 190, height: 105, x: x + (width - 190), y: y + 0, })
     if (persistentWindow) {
-      persistentWindow.webContents.reload();
+      persistentWindow.webContents.reload();      
     }
   });
 }
@@ -72,9 +76,17 @@ function highlightChecker() {
   // monitor bash script outputs
   highlight_checker_process.stdout.on('data', (data) => {
     const output = data.trim().split('@huh@');
-    console.log(output)
     text = output[0]
-    persistentWindow.webContents.send('highlighted-text', text);
+    text = text.trim()
+
+    if (!hasWhiteSpace(text)){ // dont send highlight of multiple words
+      console.log(`this word does not have white space: ${text}`)
+      persistentWindow.webContents.send('highlighted-text', text);
+    }
+    else{
+      console.log(`this word has white space: ${text}`)
+    }
+  
   });
 
   highlight_checker_process.stderr.on('data', (data) => {

@@ -19,14 +19,13 @@ const textStyle = {
     borderRadius: '10px',
     marginTop: '10px',
     marginBottom: '10px',
-    width: '100%',
+    width: '85%',
     alignContent: 'center',
     alignSelf: 'center',
     height: '30px',
     color: 'rgba(255, 255, 255, 0.742)',
     fontFamily: 'monospace',
-    fontSize: 'small',
-    
+    fontSize: 'small',  
 };
 
 const gifContainerStyle = {
@@ -68,10 +67,15 @@ const imgStyle = {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    textContainer = document.getElementById('text')
-    searchContainer = document.getElementById('search-btn')
-    gifContainer = document.getElementById('gif-container')
-    let inactivivtyTimeout
+    container = document.getElementById('container');
+    textContainer = document.getElementById('text');
+    searchContainer = document.getElementById('search-btn');
+    gifContainer = document.getElementById('gif-container');
+    cancelContainer = document.getElementById('cancel');
+    loaderContainer = document.getElementById('loader')
+    resultContainer = document.getElementById('results');
+    body  = document.body;
+    let inactivivtyTimeout;
 
     function resetInactivityTimer() {
         clearTimeout(inactivivtyTimeout);
@@ -81,11 +85,16 @@ document.addEventListener('DOMContentLoaded', () => {
             searchContainer.innerText = '';
             document.getElementById('results').innerText = '';
             ipcRenderer.send('reload-window');
-        }, 10000); // Reset to standby after 10 seconds of inactivity
+        }, 10000);
     }
 
     ipcRenderer.on('highlighted-text', (event, text) => {
-    
+        
+        body.style.backgroundColor = "rgba(0, 0, 0, 0.1)"
+        container.style.background = "rgba(0, 0, 0, 0.348)"
+        searchContainer.style.display = 'block';
+        cancelContainer.style.display = 'block';
+
         textContainer.innerText = `selected: ${text}`
         Object.assign(textContainer.style, textStyle);
 
@@ -102,29 +111,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
         gifContainer.style.display = 'none';
 
-        resetInactivityTimer();
+        //resetInactivityTimer();
     
     });
 
     searchContainer.addEventListener('click', () => {
         const text = document.getElementById('text').innerText.split(':')[1];
         console.log(text)
+        resultContainer.innerText = '';
         searchContainer.style.display = 'none';
         textContainer.style.height = '20%';
+        loaderContainer.style.display = 'block';
         
-
-
         //api call
         fetch(`http://localhost:8000/define/${text}`)
             .then(response => response.json())
             .then(data => {
             console.log(data)
-            const resultContainer = document.getElementById('results');
             Object.assign(resultContainer.style, resultStyle)
             
             res1 = data[0].meanings[0].definitions[0].definition
             console.log(data)
+            loaderContainer.style.display = 'none';
             resultContainer.innerText = res1
             })
+            .catch(error => {
+                console.error('Error:', error);
+                loaderContainer.style.display = 'none'; // Ensure loader is hidden on error as well
+            });
+        
+        
+        
+        resetInactivityTimer()
+        window.addEventListener('mousemove', resetInactivityTimer);
     });
+
+    cancelContainer.addEventListener('click', () => {
+        ipcRenderer.send('reload-window');
+    })
 });
