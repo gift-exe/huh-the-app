@@ -17,6 +17,24 @@ function hasWhiteSpace(s) {
   return /\s/g.test(s);
 }
 
+function startApi(){
+  // this function is to send a request to restart the render app, 
+  // because render shuts down api after being inactive for a while
+  // because I'm using the free tier
+
+  url="https://dictionary-api-nmwj.onrender.com/"
+
+  fetch(`${url}define/start`)
+    .then(response => response.json())
+    .then(data => {
+      console.log('API RE-STARTED')
+    })
+    .catch(error => {
+        console.error('Error:', error);
+
+    });
+}
+
 function createMainWindow() {
   const { x, y, width, height } = screen.getPrimaryDisplay().workArea;
   mainWindow = new BrowserWindow({
@@ -31,6 +49,7 @@ function createMainWindow() {
   });
 
   mainWindow.loadFile(path.join(__dirname, 'index.html'))
+  startApi()
 }
 
 function createPersistentWindow() {

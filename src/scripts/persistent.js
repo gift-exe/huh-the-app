@@ -1,6 +1,6 @@
 const { ipcRenderer } = require('electron');
 
-const URL = process.env.URL
+url="https://dictionary-api-nmwj.onrender.com/"
 
 const searchBtnStyle = {
     borderRadius: '10px',
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loaderContainer.style.display = 'block';
         
         //api call
-        fetch(`${URL}define/${text}`)
+        fetch(`${url}define/${text}`)
             .then(response => response.json())
             .then(data => {
             console.log(data)
