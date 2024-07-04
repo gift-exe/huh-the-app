@@ -73,9 +73,9 @@ function createPersistentWindow() {
   
   persistentWindow.loadFile(path.join(__dirname, 'windows', 'persistent.html'));
 
-  persistentWindow.webContents.on('did-finish-load', () => {
-    persistentWindow.webContents.openDevTools({ mode: 'detach' });
-  });
+  // persistentWindow.webContents.on('did-finish-load', () => {
+  //   persistentWindow.webContents.openDevTools({ mode: 'detach' });
+  // });
 
   ipcMain.on('reload-window', () => {
     //persistentWindow.setBounds({ width: 190, height: 105, x: x + (width - 190), y: y + 0, })
