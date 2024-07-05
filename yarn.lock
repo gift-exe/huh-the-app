@@ -288,7 +288,7 @@
     minimist "^1.2.6"
     plist "^3.0.5"
 
-"@electron/packager@^18.3.1":
+"@electron/packager@^18.3.1", "@electron/packager@^18.3.3":
   version "18.3.3"
   resolved "https://registry.npmjs.org/@electron/packager/-/packager-18.3.3.tgz"
   integrity sha512-hGXzwbUdxv49XvlYwlVPC6W6j6WaXUAzKkYyyTeiwdhxvHFMfQSEJxVHsQpqMFzZZ7wrr7iqiokOFZ/qkgEzUQ==
