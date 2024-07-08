@@ -21,7 +21,8 @@
     "@electron-forge/plugin-fuses": "^7.4.0",
     "@electron/fuses": "^1.8.0",
     "@electron/packager": "^18.3.3",
-    "electron": "31.0.2"
+    "electron": "31.0.2",
+    "electron-winstaller": "^5.3.1"
   },
   "keywords": [],
   "author": {
