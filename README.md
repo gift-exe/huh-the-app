@@ -12,7 +12,7 @@ Have funnnnn : )
 
 Now for my dear (potential) contributors... I've added a video demo of how the app works.  
 
-[demo](https://github.com/gift-exe/huh-the-app/blob/master/demo.mp4)
+[demo](https://github.com/gift-exe/huh-the-app/raw/master/demo.mp4)
 
 Currently, the app should only work on Linux, and I have created the installer for only Debian distros (i.e .deb)
 
