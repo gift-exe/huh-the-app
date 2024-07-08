@@ -12,13 +12,13 @@ Have funnnnn : )
 
 Now for my dear (potential) contributors... I've added a video demo of how the app works.  
 
-![demo](https://github.com/gift-exe/huh-the-app/blob/master/demo.mp4)
+[demo](https://github.com/gift-exe/huh-the-app/blob/master/demo.mp4)
 
 Currently, the app should only work on Linux, and I have created the installer for only Debian distros (i.e .deb)
 
 So a great point to start contributing from would be creating releases for Windows and Mac OS
 
-check this ![issue](https://github.com/gift-exe/huh-the-app/issues/1) and this ![one](https://github.com/gift-exe/huh-the-app/issues/2), to get more info.  
+check this [issue](https://github.com/gift-exe/huh-the-app/issues/1) and this [one](https://github.com/gift-exe/huh-the-app/issues/2), to get more info.  
 
 This is a super simple app, it works, but it's like super basic, so if you'd love any new feature, just create a new issue, and start working on it :)  
 
