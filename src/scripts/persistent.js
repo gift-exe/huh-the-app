@@ -1,6 +1,7 @@
 const { ipcRenderer } = require('electron');
 
 url="https://dictionary-api-nmwj.onrender.com/"
+base_url="https://api.dictionaryapi.dev/api/v2/entries/en/"
 
 const searchBtnStyle = {
     borderRadius: '10px',
@@ -126,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loaderContainer.style.display = 'block';
         
         //api call
-        fetch(`${url}define/${text}`)
+        fetch(`${base_url}${text}`)
             .then(response => response.json())
             .then(data => {
             console.log(data)
