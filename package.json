@@ -9,7 +9,9 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\""
+    "lint": "echo \"No linting configured\"",
+    "build-linux": "electron-packager . huh-the-app --platform linux --arch x64 --out dist/",
+    "deb64": "electron-installer-debian --src dist/huh-the-app-linux-x64/ --dest dist/installers/ --arch amd64"
   },
   "devDependencies": {
     "@electron-forge/cli": "^7.4.0",
@@ -22,6 +24,7 @@
     "@electron/fuses": "^1.8.0",
     "@electron/packager": "^18.3.3",
     "electron": "31.0.2",
+    "electron-installer-debian": "^3.2.0",
     "electron-winstaller": "^5.3.1"
   },
   "keywords": [],
